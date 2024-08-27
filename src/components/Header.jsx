@@ -57,15 +57,15 @@ const Header = () => {
           </div>
         </div>
 
-        <ul className="flex gap-8">
+        <ul className="flex gap-6">
           {HeadersOptions.map((option) => {
             return (
               <li
                 key={option.id}
                 className="flex items-center gap-2 text-[16px] text-gray-600 font-semibold cursor-pointer"
               >
-                <option.icon className="text-[20px]"/>
-                {option.title}
+                <option.icon className="text-[20px] "/>
+                <p>{option.title}</p>
               </li>
             );
           })}

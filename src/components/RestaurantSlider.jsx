@@ -1,39 +1,27 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 
-const Body = () => {
-  const [items, setItems] = useState([]);
+import RestaurantCard from "./RestaurantCard";
 
+export default function RestaurantSlider({ data }) {
   const [value, setValue] = useState(0);
 
-  const fetchItems = async () => {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.27060&lng=85.83340&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const result = await response.json();
-    setItems(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-    console.log(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-  };
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
   const handleNext = () => {
-    value >= 120 ? "" : setValue((pre) => pre + 30);
+    value >= 181 ? "" : setValue((pre) => pre + 30);
+    // setValue((pre) => pre + 30)
+    console.log(value);
   };
 
   const handlePrev = () => {
     value === 0 ? "" : setValue((pre) => pre - 30);
   };
-
-  console.log(value);
-
   return (
-    <div className="w-full">
-      <div className="w-[75%] mx-auto mt-3  overflow-hidden">
+    <>
+      <div className="mt-8">
         <div className="flex justify-between items-center">
-          <h1 className="text-lg font-bold">{`what's on your mind?`}</h1>
+          <h1 className="text-lg font-bold">{`Top restaurant chains in Bhubaneswar`}</h1>
           <div className="flex gap-4">
             <div
               onClick={handlePrev}
@@ -55,20 +43,14 @@ const Body = () => {
         </div>
         <div
           style={{ translate: `-${value}%` }}
-          className={`flex w-full duration-1000`}
+          className={`flex gap-5 justify-center w-full duration-300 mt-2 `}
         >
-          {items.map((item) => (
-            <img
-              key={item.id}
-              className="h-[150px]"
-              src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/${item.imageId}`}
-              alt=""
-            />
+          {data.map((item) => (
+            <RestaurantCard key={item.info.id} item={item} />
           ))}
         </div>
+        <hr className="border" />
       </div>
-    </div>
+    </>
   );
-};
-
-export default Body;
+}
