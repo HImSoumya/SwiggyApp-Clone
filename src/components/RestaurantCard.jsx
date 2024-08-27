@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa6";
 
 export default function RestaurantCard({ item }) {
   return (
-    <div className="w-full flex flex-col justify-center gap-1 h-auto transform hover:scale-95 transition duration-300 ease-in-out">
+    <div className="w-full cursor-pointer flex flex-col justify-center gap-1 h-auto transform hover:scale-95 transition duration-300 ease-in-out">
       <div className="w-[230px] h-[130px] relative rounded-lg">
         <img
           className="w-full h-[130px] object-cover rounded-lg"
@@ -16,7 +16,7 @@ export default function RestaurantCard({ item }) {
         <div className="absolute bottom-0 bg-gradient-to-t from-black/80 w-full h-[80px] rounded-lg"></div>
       </div>
       <div>
-        <h1 className=" font-bold text-sm">{item.info.name}</h1>
+        <h1 className=" font-bold text-sm">{item.info.name.length>=15?item.info.name.slice(0,15)+"...":item.info.name}</h1>
         <h2 className="flex gap-1 items-center text-[14px] font-semibold font-sans">
           <div className="w-[14px] h-[14px] bg-[#1C903C] rounded-full flex justify-center items-center">
             <FaStar className="text-white text-[8px]" />

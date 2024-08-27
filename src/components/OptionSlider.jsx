@@ -43,7 +43,7 @@ export default function OptionSlider({data}) {
         style={{ translate: `-${value}%` }}
         className={`flex w-full duration-300 mb-10`}
       >
-        {data.map((item) => (
+        {data && data.map((item) => (
           <img
             key={item.id}
             className="h-[160px]"

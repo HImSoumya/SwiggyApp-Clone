@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import OptionSlider from "../components/OptionSlider";
 import RestaurantSlider from "../components/RestaurantSlider";
+import Restaurants from "./Restaurants";
 
 export default function Home() {
   const [optionsData, setOptionsData] = useState([]);
@@ -14,7 +15,7 @@ export default function Home() {
     setOptionsData(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
     setRestaurantsData(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants)
-    // console.log(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
+    console.log(result?.data);
   };
   useEffect(() => {
     fetchItems();
@@ -24,6 +25,7 @@ export default function Home() {
       <div className="w-[75%] mx-auto mt-3  overflow-hidden">
         <OptionSlider data={optionsData} />
         <RestaurantSlider data={restaurantsData}/>
+        <Restaurants data={restaurantsData}/>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default function RestaurantSlider({ data }) {
   };
   return (
     <>
-      <div className="mt-8">
+      <div className="mt-8 ">
         <div className="flex justify-between items-center">
           <h1 className="text-lg font-bold">{`Top restaurant chains in Bhubaneswar`}</h1>
           <div className="flex gap-4">
@@ -43,9 +43,9 @@ export default function RestaurantSlider({ data }) {
         </div>
         <div
           style={{ translate: `-${value}%` }}
-          className={`flex gap-5 justify-center w-full duration-300 mt-2 `}
+          className={`flex gap-5 justify-center w-full duration-300 mt-2 mb-10`}
         >
-          {data.map((item) => (
+          {data && data.map((item) => (
             <RestaurantCard key={item.info.id} item={item} />
           ))}
         </div>
