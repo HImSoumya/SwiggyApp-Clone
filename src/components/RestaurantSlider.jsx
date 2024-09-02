@@ -46,7 +46,7 @@ export default function RestaurantSlider({ data }) {
           className={`flex gap-5 justify-center w-full duration-300 mt-2 mb-10`}
         >
           {data && data.map((item) => (
-            <RestaurantCard key={item.info.id} item={item} />
+            <RestaurantCard key={item.info.id} item={item} link={item.cta.link} />
           ))}
         </div>
         <hr className="border" />
