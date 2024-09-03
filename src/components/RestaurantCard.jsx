@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 export default function RestaurantCard({ item , link}) {
-  const id = link?.split("/")[5]
+  const id = link?.split("/").at(-1)
   return (
     <Link to={`/singleRestaurant/${id}`}>
       <div className="w-full cursor-pointer flex flex-col justify-center gap-1 h-auto transform hover:scale-95 transition duration-300 ease-in-out">

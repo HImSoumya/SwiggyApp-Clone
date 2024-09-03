@@ -1,15 +1,20 @@
 import { useParams } from "react-router-dom";
 import RestaurantDetails from "../components/RestaurantDetails";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function SingleRestaurant() {
   const { id } = useParams();
-  const resId = id?.split("-")
-  const ID = resId[resId.length - 1].replace("rest","")
+  const resId = id?.split("-");
+  const ID = resId[resId.length - 1].replace("rest", "");
+
+  const [restaurantInfo, setRestaurantInfo] = useState({});
+  const [menuData, setMenuData] = useState([]);
+  const [discountData, setDiscountData] = useState([]);
+
+  console.log(restaurantInfo);
 
   useEffect(() => {
-
-    const controller = new AbortController();  
+    const controller = new AbortController();
     const signal = controller.signal;
 
     const getSingleRestaurant = async () => {
@@ -25,7 +30,15 @@ export default function SingleRestaurant() {
           throw new Error("Network response was not ok");
         }
         const data = await res.json();
-        console.log(data?.data?.cards[0]?.card?.card?.text);
+        // console.log(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card);
+        setRestaurantInfo(data?.data?.cards[2]?.card?.card?.info);
+        setDiscountData(
+          data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
+        );
+        setMenuData(
+          data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
+            ?.card?.card
+        );
       } catch (error) {
         console.log(error);
       }
@@ -37,8 +50,10 @@ export default function SingleRestaurant() {
     };
   }, [ID, id]);
   return (
-    <div>
-      <RestaurantDetails id={id} />
+    <div className="w-full h-srceen flex justify-center border-2 border-red-600">
+      <div className="pt-6">
+        <RestaurantDetails restaurantInfo={restaurantInfo} />
+      </div>
     </div>
   );
 }
