@@ -50,7 +50,7 @@ export default function SingleRestaurant() {
     };
   }, [ID, id]);
   return (
-    <div className="w-full h-srceen flex justify-center border-2 border-red-600">
+    <div className="w-full h-srceen flex justify-center">
       <div className="pt-6">
         <RestaurantDetails restaurantInfo={restaurantInfo} />
       </div>
