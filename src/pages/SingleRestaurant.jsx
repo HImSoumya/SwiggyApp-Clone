@@ -52,7 +52,7 @@ export default function SingleRestaurant() {
   return (
     <div className="w-full h-srceen flex justify-center">
       <div className="pt-6">
-        <RestaurantDetails restaurantInfo={restaurantInfo} />
+        <RestaurantDetails restaurantInfo={restaurantInfo} discountData={discountData}/>
       </div>
     </div>
   );
